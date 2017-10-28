@@ -20,7 +20,10 @@ public class ExerciseTrial : Trial {
     private float x = 0;
     private float y = 0;
     private bool isRed = false;
-
+    private float minX = 0;
+    private float maxX = 0;
+    private float minY = 0;
+    private float maxY = 0;
     #region ACCESSORS
 
     public float Duration
@@ -66,6 +69,34 @@ public class ExerciseTrial : Trial {
             return isRed;
         }
     }
+    public float MinX
+    {
+        get
+        {
+            return minX;
+        }
+    }
+    public float MaxX
+    {
+        get
+        {
+            return maxX;
+        }
+    }
+    public float MinY
+    {
+        get
+        {
+            return minY;
+        }
+    }
+    public float MaxY
+    {
+        get
+        {
+            return maxY;
+        }
+    }
     #endregion
 
 
@@ -102,9 +133,17 @@ public class ExerciseTrial : Trial {
         {
             y = 0;
         }
+
         if (!XMLUtil.ParseAttribute(n, ATTRIBUTE_ISRED, ref isRed, true))
         {
             isRed = false;
+        }
+        if (random)
+        {
+            minX = data.MinX;
+            maxX = data.MaxX;
+            minY = data.MinY;
+            maxY = data.MaxY;
         }
 
 

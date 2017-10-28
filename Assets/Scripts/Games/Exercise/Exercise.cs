@@ -79,7 +79,7 @@ public class Exercise : GameBase{
     {
         GameObject stim = stimulus;
         stim.SetActive(false);
-
+        
         yield return new WaitForSeconds(t.delay);
 
         ExerciseTrial eT = (ExerciseTrial)t;
@@ -101,8 +101,8 @@ public class Exercise : GameBase{
         //Uses a predefined position from the session file
         if (eT.IsRandom)
         {
-            eT.X = Random.Range(-350, 350);
-            eT.Y = Random.Range(-135, 135);
+            eT.X = Random.Range(eT.MinX, eT.MaxX);
+            eT.Y = Random.Range(eT.MinY, eT.MaxY);
             stim.GetComponent<RectTransform>().localPosition = new Vector3(eT.X, eT.Y, 0);
         }
         else

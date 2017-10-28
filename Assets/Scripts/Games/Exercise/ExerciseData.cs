@@ -18,6 +18,10 @@ public class ExerciseData : GameData {
     const string ATTRIBUTE_RESPONSE_TIMELIMIT = "responseTimeLimit";
     public const string ATTRIBUTE_DURATION = "duration";
     public const string ATTRIBUTE_RANDOM = "random";
+    public const string ATTRIBUTE_MINX = "minX";
+    public const string ATTRIBUTE_MAXX = "maxX";
+    public const string ATTRIBUTE_MINY = "minY";
+    public const string ATTRIBUTE_MAXY = "maxY";
     /// <summary>
     /// The amount of time that needs to pass before the player can respond without being penalized.
     /// </summary>
@@ -33,7 +37,10 @@ public class ExerciseData : GameData {
     /// </summary>
     private float duration = 0;
     private bool random = false;
-
+    private float minX = 0;
+    private float maxX = 0;
+    private float minY = 0;
+    private float maxY = 0;
     #region ACCESSORS
 
     public float GuessTimeLimit
@@ -64,6 +71,34 @@ public class ExerciseData : GameData {
             return random;
         }
     }
+    public float MinX
+    {
+        get
+        {
+            return minX;
+        }
+    }
+    public float MaxX
+    {
+        get
+        {
+            return maxX;
+        }
+    }
+    public float MinY
+    {
+        get
+        {
+            return minY;
+        }
+    }
+    public float MaxY
+    {
+        get
+        {
+            return maxY;
+        }
+    }
 
     #endregion
 
@@ -81,6 +116,12 @@ public class ExerciseData : GameData {
         XMLUtil.ParseAttribute(elem, ATTRIBUTE_RESPONSE_TIMELIMIT, ref responseTimeLimit);
         XMLUtil.ParseAttribute(elem, ATTRIBUTE_GUESS_TIMELIMIT, ref guessTimeLimit);
         XMLUtil.ParseAttribute(elem, ATTRIBUTE_RANDOM, ref random);
+        XMLUtil.ParseAttribute(elem, ATTRIBUTE_MINX, ref minX);
+        XMLUtil.ParseAttribute(elem, ATTRIBUTE_MAXX, ref maxX);
+        XMLUtil.ParseAttribute(elem, ATTRIBUTE_MINY, ref minY);
+        XMLUtil.ParseAttribute(elem, ATTRIBUTE_MAXY, ref maxY);
+
+
         //Debug.Log(duration);
         //XMLUtil.ParseAttribute(elem, ATTRIBUTE_RANDOM, ref random);
     }
@@ -93,5 +134,10 @@ public class ExerciseData : GameData {
         XMLUtil.CreateAttribute(ATTRIBUTE_RESPONSE_TIMELIMIT, responseTimeLimit.ToString(), ref elem);
         XMLUtil.CreateAttribute(ATTRIBUTE_DURATION, duration.ToString(), ref elem);
         XMLUtil.CreateAttribute(ATTRIBUTE_RANDOM, random.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ATTRIBUTE_MINX, minX.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ATTRIBUTE_MAXX, maxX.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ATTRIBUTE_MINY, minY.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ATTRIBUTE_MAXY, maxY.ToString(), ref elem);
+
     }
 }

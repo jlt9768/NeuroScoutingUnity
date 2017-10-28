@@ -2,7 +2,7 @@
 <session>
   <settings>
     <general gameType="Exercise" shuffle="true" />
-    <exercise duration="1" guessTimeLimit="0.125" responseTimeLimit =".8" random = "false"/>
+    <exercise duration="1" guessTimeLimit="0.125" responseTimeLimit =".8" random = "false" minX = "-350" maxX = "350" minY = "-135" maxY = "135"/>
   </settings>
   <trials>
     <trial delay="0.2" random = "true" isRed = "true"/>
