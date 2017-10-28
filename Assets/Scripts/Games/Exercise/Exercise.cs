@@ -84,13 +84,17 @@ public class Exercise : GameBase{
         StartInput();
         stim.SetActive(true);
         ExerciseTrial eT = (ExerciseTrial)t;
+        //Checks to see if the trial is random if so generates a random value within the screen space. If it is not random
+        //Uses a predefined position from the session file
         if (eT.IsRandom)
         {
-            stim.GetComponent<RectTransform>().localPosition = new Vector3(-50, 50, 0);
+            eT.X = Random.Range(-350, 350);
+            eT.Y = Random.Range(-135, 135);
+            stim.GetComponent<RectTransform>().localPosition = new Vector3(eT.X, eT.Y, 0);
         }
         else
         {
-            stim.GetComponent<RectTransform>().localPosition  = new Vector3(0, 0, 0);
+            stim.GetComponent<RectTransform>().localPosition  = new Vector3(eT.X, eT.Y, 0);
         }
         yield return new WaitForSeconds(((ExerciseTrial)t).duration);
         stim.SetActive(false);

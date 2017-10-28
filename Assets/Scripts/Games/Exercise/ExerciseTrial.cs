@@ -5,24 +5,19 @@ using System.Xml.Linq;
 
 public class ExerciseTrial : Trial {
 
-    //// Use this for initialization
-    //void Start () {
-
-    //}
-
-    //// Update is called once per frame
-    //void Update () {
-
-    //}
-	/// <summary>
-	/// The distance ratio that will be targeted.
-	/// </summary>
-	public float duration = 0;
+    const string ATTRIBUTE_POSX = "posX";
+    const string ATTRIBUTE_POSY = "posY";
+    /// <summary>
+    /// The distance ratio that will be targeted.
+    /// </summary>
+    public float duration = 0;
     /// <summary>
     /// Whether or not the stimulus position is random
     /// </summary>
     public bool random = false;
 
+    private float x = 0;
+    private float y = 0;
     #region ACCESSORS
 
     public float Duration
@@ -37,6 +32,28 @@ public class ExerciseTrial : Trial {
         get
         {
             return random;
+        }
+    }
+    public float X
+    {
+        get
+        {
+            return x;
+        }
+        set
+        {
+            x = value;
+        }
+    }
+    public float Y
+    {
+        get
+        {
+            return y;
+        }
+        set
+        {
+            y = value;
         }
     }
     #endregion
@@ -66,7 +83,15 @@ public class ExerciseTrial : Trial {
         {
             random = data.IsRandom;
         }
-        Debug.Log(random);
+        //Gets the x and y positions from the trial if they don't exist the default position is 0,0
+        if (!XMLUtil.ParseAttribute(n, ATTRIBUTE_POSX, ref x, true))
+        {
+            x = 0;
+        }
+        if (!XMLUtil.ParseAttribute(n, ATTRIBUTE_POSY, ref y, true))
+        {
+            y = 0;
+        }
     }
 
 
@@ -78,5 +103,7 @@ public class ExerciseTrial : Trial {
         base.WriteOutputData(ref elem);
         XMLUtil.CreateAttribute(ExerciseData.ATTRIBUTE_DURATION, duration.ToString(), ref elem);
         XMLUtil.CreateAttribute(ExerciseData.ATTRIBUTE_RANDOM, random.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ATTRIBUTE_POSX, x.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ATTRIBUTE_POSY, y.ToString(), ref elem);
     }
 }
