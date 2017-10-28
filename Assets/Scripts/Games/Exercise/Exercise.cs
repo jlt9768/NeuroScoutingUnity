@@ -5,12 +5,13 @@ using System.Collections.Generic;
 
 public class Exercise : GameBase{
 
-    const string INSTRUCTIONS = "Press <color=cyan>Spacebar</color> as soon as you see the square.";
+    const string INSTRUCTIONS = "Press <color=cyan>Spacebar</color> as soon as you see the square but don't press space if the square is <color=red>red</color>";
     const string FINISHED = "FINISHED!";
     const string RESPONSE_GUESS = "No Guessing!";
     const string RESPONSE_CORRECT = "Good!";
     const string RESPONSE_TIMEOUT = "Missed it!";
     const string RESPONSE_SLOW = "Too Slow!";
+    const string RESPONSE_RED = "Stimulus was red!";
     Color RESPONSE_COLOR_GOOD = Color.green;
     Color RESPONSE_COLOR_BAD = Color.red;
     //// Use this for initialization
@@ -155,35 +156,64 @@ public class Exercise : GameBase{
     {
         TrialResult r = new TrialResult(t);
         r.responseTime = time;
-        if (time == 0)
+        ExerciseTrial eT = (ExerciseTrial)t;
+        if (!eT.IsRed)
         {
-            // No response.
-            DisplayFeedback(RESPONSE_TIMEOUT, RESPONSE_COLOR_BAD);
-            GUILog.Log("Fail! No response!");
-        }
-        else
-        {
-            if (IsGuessResponse(time))
+            if (time == 0)
             {
-                // Responded before the guess limit, aka guessed.
-                DisplayFeedback(RESPONSE_GUESS, RESPONSE_COLOR_BAD);
-                GUILog.Log("Fail! Guess response! responseTime = {0}", time);
-            }
-            else if (IsValidResponse(time))
-            {
-                // Responded correctly.
-                DisplayFeedback(RESPONSE_CORRECT, RESPONSE_COLOR_GOOD);
-                r.success = true;
-                r.accuracy = GetAccuracy(t, time);
-                GUILog.Log("Success! responseTime = {0}", time);
+                // No response.
+                DisplayFeedback(RESPONSE_TIMEOUT, RESPONSE_COLOR_BAD);
+                GUILog.Log("Fail! No response!");
             }
             else
             {
-                // Responded too slow.
-                DisplayFeedback(RESPONSE_SLOW, RESPONSE_COLOR_BAD);
-                GUILog.Log("Fail! Slow response! responseTime = {0}", time);
+                if (IsGuessResponse(time))
+                {
+                    // Responded before the guess limit, aka guessed.
+                    DisplayFeedback(RESPONSE_GUESS, RESPONSE_COLOR_BAD);
+                    GUILog.Log("Fail! Guess response! responseTime = {0}", time);
+                }
+                else if (IsValidResponse(time))
+                {
+                    // Responded correctly.
+                    DisplayFeedback(RESPONSE_CORRECT, RESPONSE_COLOR_GOOD);
+                    r.success = true;
+                    r.accuracy = GetAccuracy(t, time);
+                    GUILog.Log("Success! responseTime = {0}", time);
+                }
+                else
+                {
+                    // Responded too slow.
+                    DisplayFeedback(RESPONSE_SLOW, RESPONSE_COLOR_BAD);
+                    GUILog.Log("Fail! Slow response! responseTime = {0}", time);
+                }
             }
         }
+        else
+        {
+            if (time == 0)
+            {
+                // No response.
+                DisplayFeedback(RESPONSE_CORRECT, RESPONSE_COLOR_GOOD);
+                r.success = true;
+                GUILog.Log("Success! stimulus was red and no button was pressed");
+            }
+            else
+            {
+                if (IsGuessResponse(time))
+                {
+                    // Responded before the guess limit, aka guessed.
+                    DisplayFeedback(RESPONSE_GUESS, RESPONSE_COLOR_BAD);
+                    GUILog.Log("Fail! Guess response! responseTime = {0}", time);
+                }
+                else if (IsValidResponse(time))
+                {
+                    // Responded correctly.
+                    DisplayFeedback(RESPONSE_RED, RESPONSE_COLOR_BAD);
+                    GUILog.Log("Fail! Stimulus was Red", time);
+                }
+            }
+        }       
         sessionData.results.Add(r);
     }
 

@@ -6,13 +6,13 @@
   </settings>
   <trials>
     <trial delay="0.2" random = "true" isRed = "true"/>
-    <trial delay="0.3" random = "false" posX = "-100" posY = "100" />
-    <trial delay="0.3" random = "false"/>
+    <trial delay="0.3" posX = "-100" posY = "100" />
+    <trial delay="0.3" />
     <trial delay="0.5" random = "true"/>
     <trial delay="0.5" random = "true"/>
-    <trial delay="0.5" random = "false"/>
+    <trial delay="0.5" />
     <trial delay="1.0" random = "true"/>
-    <trial delay="1.0" random = "false"/>
+    <trial delay="1.0" />
     <trial delay="1.0" random = "true"/>
   </trials>
 </session>
