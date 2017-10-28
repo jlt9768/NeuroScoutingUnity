@@ -5,7 +5,7 @@
     <exercise duration="1" guessTimeLimit="0.125" responseTimeLimit =".8" random = "false"/>
   </settings>
   <trials>
-    <trial delay="0.2" random = "true"/>
+    <trial delay="0.2" random = "true" isRed = "true"/>
     <trial delay="0.3" random = "false" posX = "-100" posY = "100" />
     <trial delay="0.3" random = "false"/>
     <trial delay="0.5" random = "true"/>

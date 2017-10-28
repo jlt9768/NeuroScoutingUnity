@@ -81,9 +81,21 @@ public class Exercise : GameBase{
 
         yield return new WaitForSeconds(t.delay);
 
-        StartInput();
-        stim.SetActive(true);
         ExerciseTrial eT = (ExerciseTrial)t;
+
+        StartInput();
+
+        if (eT.IsRed)
+        {
+            stim.GetComponent<Image>().color = Color.red;
+        }
+        else
+        {
+            stim.GetComponent<Image>().color = Color.white;
+        }
+        stim.SetActive(true);
+
+        
         //Checks to see if the trial is random if so generates a random value within the screen space. If it is not random
         //Uses a predefined position from the session file
         if (eT.IsRandom)
@@ -96,6 +108,8 @@ public class Exercise : GameBase{
         {
             stim.GetComponent<RectTransform>().localPosition  = new Vector3(eT.X, eT.Y, 0);
         }
+
+
         yield return new WaitForSeconds(((ExerciseTrial)t).duration);
         stim.SetActive(false);
         EndInput();

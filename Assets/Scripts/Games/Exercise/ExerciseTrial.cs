@@ -7,6 +7,7 @@ public class ExerciseTrial : Trial {
 
     const string ATTRIBUTE_POSX = "posX";
     const string ATTRIBUTE_POSY = "posY";
+    const string ATTRIBUTE_ISRED = "isRed";
     /// <summary>
     /// The distance ratio that will be targeted.
     /// </summary>
@@ -18,6 +19,8 @@ public class ExerciseTrial : Trial {
 
     private float x = 0;
     private float y = 0;
+    private bool isRed = false;
+
     #region ACCESSORS
 
     public float Duration
@@ -56,6 +59,13 @@ public class ExerciseTrial : Trial {
             y = value;
         }
     }
+    public bool IsRed
+    {
+        get
+        {
+            return isRed;
+        }
+    }
     #endregion
 
 
@@ -92,6 +102,12 @@ public class ExerciseTrial : Trial {
         {
             y = 0;
         }
+        if (!XMLUtil.ParseAttribute(n, ATTRIBUTE_ISRED, ref isRed, true))
+        {
+            isRed = false;
+        }
+
+
     }
 
 
@@ -105,5 +121,6 @@ public class ExerciseTrial : Trial {
         XMLUtil.CreateAttribute(ExerciseData.ATTRIBUTE_RANDOM, random.ToString(), ref elem);
         XMLUtil.CreateAttribute(ATTRIBUTE_POSX, x.ToString(), ref elem);
         XMLUtil.CreateAttribute(ATTRIBUTE_POSY, y.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ATTRIBUTE_ISRED, isRed.ToString(), ref elem);
     }
 }
