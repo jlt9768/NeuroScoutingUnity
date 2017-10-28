@@ -5,14 +5,14 @@
     <exercise duration="1" guessTimeLimit="0.125" responseTimeLimit =".8" random = "false"/>
   </settings>
   <trials>
-    <trial delay="0.2" random = "false"/>
-    <trial delay="0.3" random = "true"/>
-    <trial delay="0.3" random = "true"/>
-    <trial delay="0.5" random = "false"/>
+    <trial delay="0.2" random = "true"/>
+    <trial delay="0.3" random = "false"/>
+    <trial delay="0.3" random = "false"/>
+    <trial delay="0.5" random = "true"/>
     <trial delay="0.5" random = "true"/>
     <trial delay="0.5" random = "false"/>
     <trial delay="1.0" random = "true"/>
-    <trial delay="1.0" random = "true"/>
     <trial delay="1.0" random = "false"/>
+    <trial delay="1.0" random = "true"/>
   </trials>
 </session>

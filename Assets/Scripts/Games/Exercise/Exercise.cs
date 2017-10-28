@@ -83,7 +83,15 @@ public class Exercise : GameBase{
 
         StartInput();
         stim.SetActive(true);
-
+        ExerciseTrial eT = (ExerciseTrial)t;
+        if (eT.IsRandom)
+        {
+            stim.GetComponent<RectTransform>().localPosition = new Vector3(-50, 50, 0);
+        }
+        else
+        {
+            stim.GetComponent<RectTransform>().localPosition  = new Vector3(0, 0, 0);
+        }
         yield return new WaitForSeconds(((ExerciseTrial)t).duration);
         stim.SetActive(false);
         EndInput();
