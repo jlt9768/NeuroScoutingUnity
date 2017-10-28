@@ -55,13 +55,11 @@ public static class XMLUtil
 	/// </summary>
 	public static bool LoadSessionData(TextAsset sessionFile, ref SessionData sData)
 	{
-        Debug.Log("Load Session");
 		XmlDocument doc = new XmlDocument();
 		XmlNode settingsElem;
 		XmlNode trialsElem;
 		try
 		{
-            Debug.Log("Setup 1");
             doc.LoadXml(sessionFile.text);
 			settingsElem = doc.SelectSingleNode("/" + ELEM_SESSION + "/" + ELEM_SETTINGS);
 			trialsElem = doc.SelectSingleNode("/" + ELEM_SESSION + "/" + ELEM_TRIALS);
@@ -69,7 +67,6 @@ public static class XMLUtil
             sData.fileName = sessionFile.name;
             
             ParseSessionSettings(settingsElem, ref sData);
-            Debug.Log(settingsElem.InnerXml);
             ParseSessionTrials(trialsElem, ref sData);
             
 
@@ -114,7 +111,6 @@ public static class XMLUtil
 					break;
 
                 case ELEM_EXERCISE:
-                    Debug.Log("Exercise ParseSessionSettings");
                     sData.gameData = new ExerciseData(n as XmlElement);
                     break;
 
@@ -161,7 +157,6 @@ public static class XMLUtil
 	{
         
 		Trial t = SessionUtil.CreateGameTrial(sData, n);
-        Debug.Log("Setup 2");
         sData.trials.Add(t);
 	}
 

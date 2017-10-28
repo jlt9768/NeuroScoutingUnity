@@ -14,14 +14,14 @@ public class ExerciseTrial : Trial {
     //void Update () {
 
     //}
-    /// <summary>
-	/// The distance ratio that will be targeted.
-	/// </summary>
 	/// <summary>
 	/// The distance ratio that will be targeted.
 	/// </summary>
 	public float duration = 0;
-
+    /// <summary>
+    /// Whether or not the stimulus position is random
+    /// </summary>
+    public bool random = false;
 
     #region ACCESSORS
 
@@ -32,7 +32,13 @@ public class ExerciseTrial : Trial {
             return duration;
         }
     }
-
+    public bool IsRandom
+    {
+        get
+        {
+            return random;
+        }
+    }
     #endregion
 
 
@@ -56,6 +62,11 @@ public class ExerciseTrial : Trial {
         {
             duration = data.GeneratedDuration;
         }
+        if (!XMLUtil.ParseAttribute(n, ExerciseData.ATTRIBUTE_RANDOM, ref random, true))
+        {
+            random = data.IsRandom;
+        }
+        Debug.Log(random);
     }
 
 
@@ -66,5 +77,6 @@ public class ExerciseTrial : Trial {
     {
         base.WriteOutputData(ref elem);
         XMLUtil.CreateAttribute(ExerciseData.ATTRIBUTE_DURATION, duration.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ExerciseData.ATTRIBUTE_RANDOM, random.ToString(), ref elem);
     }
 }

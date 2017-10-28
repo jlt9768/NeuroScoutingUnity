@@ -15,14 +15,11 @@ public static class SessionUtil
 	/// </summary>
 	public static Trial CreateGameTrial(SessionData data, XmlElement elem = null)
 	{
-        Debug.Log("Session UTIL");
         switch (data.gameType)
 		{
             case GameType.Exercise:
-                Debug.Log("Exercise Trial");
                 return new ExerciseTrial(data, elem);
             case GameType.React:
-                Debug.Log("React Session");
                 return new ReactTrial(data, elem);          
             default:
 				return new Trial(data, elem);
@@ -39,10 +36,8 @@ public static class SessionUtil
         switch (sData.gameType)
 		{
             case GameType.Exercise:
-                Debug.Log("Exercise Session");
                 return XMLUtil.ELEM_EXERCISE;
             case GameType.React:
-                Debug.Log("React Session");
                 return XMLUtil.ELEM_REACT;        
             default:
 				return string.Empty;

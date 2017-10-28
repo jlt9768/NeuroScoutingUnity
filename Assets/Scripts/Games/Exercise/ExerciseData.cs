@@ -17,7 +17,7 @@ public class ExerciseData : GameData {
     const string ATTRIBUTE_GUESS_TIMELIMIT = "guessTimeLimit";
     const string ATTRIBUTE_RESPONSE_TIMELIMIT = "responseTimeLimit";
     public const string ATTRIBUTE_DURATION = "duration";
-
+    public const string ATTRIBUTE_RANDOM = "random";
     /// <summary>
     /// The amount of time that needs to pass before the player can respond without being penalized.
     /// </summary>
@@ -32,7 +32,7 @@ public class ExerciseData : GameData {
     /// The visibility Duration for the Stimulus.
     /// </summary>
     private float duration = 0;
-
+    private bool random = false;
 
     #region ACCESSORS
 
@@ -57,6 +57,13 @@ public class ExerciseData : GameData {
             return duration;
         }
     }
+    public bool IsRandom
+    {
+        get
+        {
+            return random;
+        }
+    }
 
     #endregion
 
@@ -73,6 +80,9 @@ public class ExerciseData : GameData {
         XMLUtil.ParseAttribute(elem, ATTRIBUTE_DURATION, ref duration);
         XMLUtil.ParseAttribute(elem, ATTRIBUTE_RESPONSE_TIMELIMIT, ref responseTimeLimit);
         XMLUtil.ParseAttribute(elem, ATTRIBUTE_GUESS_TIMELIMIT, ref guessTimeLimit);
+        XMLUtil.ParseAttribute(elem, ATTRIBUTE_RANDOM, ref random);
+        //Debug.Log(duration);
+        //XMLUtil.ParseAttribute(elem, ATTRIBUTE_RANDOM, ref random);
     }
 
 
@@ -82,5 +92,6 @@ public class ExerciseData : GameData {
         XMLUtil.CreateAttribute(ATTRIBUTE_GUESS_TIMELIMIT, guessTimeLimit.ToString(), ref elem);
         XMLUtil.CreateAttribute(ATTRIBUTE_RESPONSE_TIMELIMIT, responseTimeLimit.ToString(), ref elem);
         XMLUtil.CreateAttribute(ATTRIBUTE_DURATION, duration.ToString(), ref elem);
+        XMLUtil.CreateAttribute(ATTRIBUTE_RANDOM, random.ToString(), ref elem);
     }
 }

@@ -45,7 +45,6 @@ public class Exercise : GameBase{
     /// </summary>
     public override GameBase StartSession(TextAsset sessionFile)
     {
-        Debug.Log("Exercise Start Session");
         base.StartSession(sessionFile);
 
         instructionsText.text = INSTRUCTIONS;

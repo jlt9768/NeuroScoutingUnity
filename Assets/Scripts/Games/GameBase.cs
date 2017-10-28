@@ -96,7 +96,6 @@ public abstract class GameBase : MonoBehaviour
 	{
 		// Create and load a SessionData object to give to the active game.
 		sessionData = new SessionData();
-        Debug.Log("Start Session");
 		if (XMLUtil.LoadSessionData(sessionFile, ref sessionData))
 		{
 			GUILog.Log("Game {0} starting Session {1}", this.gameObject.name, sessionFile.name);
