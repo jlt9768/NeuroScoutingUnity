@@ -204,13 +204,13 @@ public class Exercise : GameBase{
                 {
                     // Responded before the guess limit, aka guessed.
                     DisplayFeedback(RESPONSE_GUESS, RESPONSE_COLOR_BAD);
-                    GUILog.Log("Fail! Guess response! responseTime = {0}", time);
+                    GUILog.Log("Fail! Guess response!", time);
                 }
                 else if (IsValidResponse(time))
                 {
-                    // Responded correctly.
+                    // Responded correctly but stimulus was red.
                     DisplayFeedback(RESPONSE_RED, RESPONSE_COLOR_BAD);
-                    GUILog.Log("Fail! Stimulus was Red", time);
+                    GUILog.Log("Fail! Stimulus was red.", time);
                 }
             }
         }       
